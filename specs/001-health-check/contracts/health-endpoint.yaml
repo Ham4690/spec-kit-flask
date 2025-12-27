@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Health Check API
+  description: Simple health check endpoint for service availability monitoring
+  version: 1.0.0
+
+paths:
+  /health:
+    get:
+      summary: Check service health status
+      description: |
+        Returns the current health status of the service.
+        This is a lightweight endpoint with no dependencies that can be used
+        by monitoring systems, load balancers, and container orchestration
+        to verify service availability.
+      operationId: getHealthStatus
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Service is healthy and operational
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+              example:
+                status: ok
+    post:
+      summary: Method not allowed
+      tags:
+        - Health
+      responses:
+        '405':
+          description: Method not allowed (only GET is supported)
+    put:
+      summary: Method not allowed
+      tags:
+        - Health
+      responses:
+        '405':
+          description: Method not allowed (only GET is supported)
+    delete:
+      summary: Method not allowed
+      tags:
+        - Health
+      responses:
+        '405':
+          description: Method not allowed (only GET is supported)
+    patch:
+      summary: Method not allowed
+      tags:
+        - Health
+      responses:
+        '405':
+          description: Method not allowed (only GET is supported)
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+          description: Service health status indicator
+          example: ok
+      description: |
+        Health status response object.
+        Indicates whether the service is operational and ready to handle requests.
