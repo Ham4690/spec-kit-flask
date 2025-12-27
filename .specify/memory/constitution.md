@@ -1,50 +1,106 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- Sync Impact Report (v1.0.0)
+VERSION: 0.0.0 → 1.0.0 (MINOR - Initial constitution for Flask project)
+NEW PRINCIPLES:
+  1. I. Test-First Development
+  2. II. Simplicity (YAGNI)
+  3. III. Documentation Excellence
+ADDED SECTIONS:
+  - Governance (amendment procedures, versioning, compliance)
+TEMPLATES UPDATED: ✅ All dependent templates reviewed for compatibility
+FOLLOW-UP TODOS: None - initial ratification complete
+-->
+
+# spec-kit-flask Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Test-First Development
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Test-driven development (TDD) is non-negotiable. Tests MUST be written before implementation code. All changes MUST include:
+- Unit tests for individual functions and methods
+- Integration tests for component interactions
+- Acceptance tests aligned with user stories (given/when/then format)
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+The Red-Green-Refactor cycle is mandatory: tests fail first, implementation follows, then refactor for clarity.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Tests serve as executable specifications, catch regressions early, and document intended behavior. TDD disciplines design decisions and ensures code quality from the start.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. Simplicity (YAGNI)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+You Aren't Gonna Need It (YAGNI). Every feature MUST solve the current requirement, no more. No speculative abstractions, no premature optimization, no unused helper functions.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Implementation approach:
+- Start with the simplest solution that works
+- Avoid over-engineering for "future extensibility"
+- Add complexity only when requirements demand it
+- Delete unused code immediately
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rationale**: Simpler code is easier to understand, test, and maintain. Over-engineering introduces bugs, increases cognitive load, and creates unmaintainable systems. Simplicity is a feature.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### III. Documentation Excellence
+
+Every module, function, and complex algorithm MUST be documented. Documentation MUST be:
+- Clear and concise (plain language, not jargon)
+- Co-located with code (docstrings, inline comments for non-obvious logic)
+- Kept synchronized with implementation (not allowed to drift)
+- Accessible to developers at all experience levels
+
+README files MUST include:
+- Purpose and scope of the module
+- Quick start / usage examples
+- Key design decisions and their rationale
+- Known limitations or caveats
+
+**Rationale**: Documentation reduces onboarding friction, prevents tribal knowledge, and ensures knowledge survives team transitions. Clear docs are a sign of clear thinking.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### Amendment Procedure
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Changes to this constitution MUST:
+1. Be proposed with a written rationale (why the change, what problem it solves)
+2. Be reviewed by at least one other developer to ensure alignment with project values
+3. Be documented in the git log with version bump and amendment date
+4. Be propagated to dependent artifacts (templates, guidelines, processes)
+
+### Versioning Policy
+
+Constitution versions follow semantic versioning (MAJOR.MINOR.PATCH):
+- **MAJOR**: Backward-incompatible principle removals or complete redefinitions
+- **MINOR**: New principles added or significant principle clarifications
+- **PATCH**: Wording improvements, typo fixes, non-semantic refinements
+
+### Compliance & Review
+
+- All pull requests MUST verify compliance with these principles
+- Code review checklist MUST include: "Does this follow the constitution?"
+- Violations MUST be flagged and resolved before merge
+- Quarterly review of constitution effectiveness against project health
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-27 | **Last Amended**: 2025-12-27
+
+## IV. Flask API Project Standards
+
+This project follows a **minimal, opinionated Flask API architecture** optimized for clarity, speed, and low cognitive overhead.
+
+### Technology Stack
+
+- **Language**: Python 3.10
+- **Framework**: Flask 3.1
+- **Package Management / Execution**: uv
+- **Build System**: hatchling (via hatching)
+- **Linting / Formatting**: ruff (single source of truth)
+- **Testing**: pytest 8.4
+
+No additional tooling is permitted unless it clearly reduces complexity.
+
+---
+
+### Application Structure & Execution
+
+- Flask MUST be started via **CLI mode**
+- Local development server runs on **localhost:8080**
+- Entry point MUST be executed through `uv`
+
+```bash
+$ uv run flask run
