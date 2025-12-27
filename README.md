@@ -40,19 +40,16 @@ The virtual environment is automatically created by `uv` when running commands.
 uv run flask run
 ```
 
-The server will start on `http://localhost:8080`
+The server will start on `http://localhost:5000`
 
 ### Test the Health Endpoint
 
 ```bash
 # Using curl
-curl http://localhost:8080/health
+curl http://localhost:5000/health
 
 # Expected response:
 # {"status":"ok"}
-
-# Using Python
-python -c "import requests; print(requests.get('http://localhost:8080/health').json())"
 ```
 
 ## Testing
@@ -85,8 +82,10 @@ uv run pytest tests/ --cov=src --cov-report=html
 
 ```
 .
+├── app.py                    # Flask app entry point (for 'flask run')
 ├── src/
 │   ├── __init__.py           # Flask app factory
+│   ├── app.py                # App instance for programmatic use
 │   └── blueprints/
 │       ├── __init__.py       # Blueprints package
 │       └── health.py         # Health check endpoint
