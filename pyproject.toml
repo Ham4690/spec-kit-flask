@@ -1,0 +1,32 @@
+[project]
+name = "spec-kit-flask"
+version = "0.1.0"
+description = "Health check API endpoint for Flask application"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "Development Team", email = "dev@example.com"}
+]
+
+dependencies = [
+    "Flask>=3.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4",
+    "pytest-cov>=4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
